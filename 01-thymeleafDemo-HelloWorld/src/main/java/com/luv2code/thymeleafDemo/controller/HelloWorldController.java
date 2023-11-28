@@ -3,6 +3,7 @@ package com.luv2code.thymeleafDemo.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -21,6 +22,8 @@ public class HelloWorldController {
        return "helloworld";
    }
 
+    //-------Code for creating model and read data from Form via controller and pass this data to model to view tamplete-------
+
    @RequestMapping("/processFormVtwo")
    public String letsShout(HttpServletRequest request, Model model){
 
@@ -35,6 +38,20 @@ public class HelloWorldController {
 
     // pass the message to model
     model.addAttribute("message",result);
+
+    return "helloworld";
+   }
+
+   // Read and bind the data from Form with using @RequesParam which helps to directly read the data and pass that data to model message variable 
+
+   @RequestMapping("/processFormVthree")
+   public String letsShoutTwo(@RequestParam("studentName") String theName, Model model){
+
+    theName=theName.toUpperCase();
+    
+    String result = "This is the message using @RequestParam " + theName;
+
+    model.addAttribute("message", result);
 
     return "helloworld";
    }
