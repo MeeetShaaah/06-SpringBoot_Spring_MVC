@@ -2,6 +2,8 @@ package com.luv2code.thymeleafDemo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -11,17 +13,23 @@ import jakarta.servlet.http.HttpServletRequest;
 public class HelloWorldController {
 
     //controller method to show initial form
-    @RequestMapping("/showForm")
+    // @RequestMapping("/showForm")
+    // public String showform(){
+    //     return "hello-world-form";
+    // }
+
+    // Changing RequestMapping to GetMapping
+    @GetMapping("/showForm")
     public String showform(){
         return "hello-world-form";
     }
 
-   //controller method to process the form
+    // controller method to process the submitted data from form
    @RequestMapping("/processForm")
    public String processForm(){
        return "helloworld";
    }
-
+    
     //-------Code for creating model and read data from Form via controller and pass this data to model to view tamplete-------
 
    @RequestMapping("/processFormVtwo")
@@ -48,7 +56,7 @@ public class HelloWorldController {
    public String letsShoutTwo(@RequestParam("studentName") String theName, Model model){
 
     theName=theName.toUpperCase();
-    
+
     String result = "This is the message using @RequestParam " + theName;
 
     model.addAttribute("message", result);
