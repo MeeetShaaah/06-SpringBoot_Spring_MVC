@@ -2,8 +2,13 @@ package com.luv2code.thymeleafDemo.model;
 
 import java.util.List;
 
+import io.micrometer.common.lang.NonNull;
+
 public class Student {
     private String firstName;
+    // Add validation rules to the last name 
+    @NonNull(message = "is required")
+    @Size(min=1, message="is required")
     private String lastName;
     private String country;
     private String favoriteLanguage;
