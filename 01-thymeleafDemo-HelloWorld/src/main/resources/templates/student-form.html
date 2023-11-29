@@ -16,9 +16,7 @@
             <option th:value="USA">USA</option>
             <option th:value="China">China</option>
             <option th:value="UK">UK</option> -->
-
-            <option th:each="tempCountry: ${countries}"  th:value="${tempCountry}" th:text="$
-            {tempCountry}"></option>
+            <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}"></option>
         </select>
         <br><br>
         <input type="submit" value="Submit">
