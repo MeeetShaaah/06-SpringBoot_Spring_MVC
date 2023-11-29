@@ -3,10 +3,13 @@ package com.luv2code.thymeleafDemo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.luv2code.thymeleafDemo.model.Student;
@@ -17,6 +20,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class StudentController {
+
+    // Add initBinder to trim white space from any string passed on the field
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder){
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+    }
 
     // Add list of countries from application.properties directly,
     @Value("${countries}")
@@ -54,6 +64,7 @@ public class StudentController {
 
     @PostMapping("/processStudentForm")
     public String processForm(@Valid @ModelAttribute("student") Student theStudent, BindingResult theBindingResult) {
+
 
         if (theBindingResult.hasErrors()) {
             return "student-form";
