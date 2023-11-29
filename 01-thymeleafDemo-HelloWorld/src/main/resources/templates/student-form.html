@@ -28,6 +28,14 @@
         class="error"
       ></span
       ><br /><br />
+      Free Passes: <input type="text" th:field="*{freePasses}" />
+      <!-- Add the error message  -->
+      <span
+        th:if="${#fields.hasErrors('freePasses')}"
+        th:errors="*{freePasses}"
+        class="error"
+      ></span>
+      <br> <br>
 
       <!-- Code for selectioin list -->
       Country:
