@@ -20,9 +20,11 @@
         </select>
         <br><br>
         Favouroite Programming Language:
-        <input type="radio" th:field="*{favoriteLanguage}" th:value="GO">GO</input>
+        <!-- <input type="radio" th:field="*{favoriteLanguage}" th:value="GO">GO</input>
         <input type="radio" th:field="*{favoriteLanguage}" th:value="Java">Java</input>
-        <input type="radio" th:field="*{favoriteLanguage}" th:value="Python">Python</input>
+        <input type="radio" th:field="*{favoriteLanguage}" th:value="Python">Python</input> -->
+        <input type="radio" th:field="*{favoriteLanguage}" th:each="tempLanguage: ${languages}" th:value="${tempLanguage}" th:text="${tempLanguage}" />
+
         <br><br>
         <input type="submit" value="Submit">
         
