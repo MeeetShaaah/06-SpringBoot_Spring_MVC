@@ -12,5 +12,10 @@
     Country: <span th:text="${student.country}"></span>
     <br><br>
     Favoirite Language: <span th:text="${student.favoriteLanguage}"></span>
+    <br><br>
+    Favoirite Operating System:
+    <ul>
+        <li  th:each="tempSystem: ${student.favoriteSystems}" th:value="${tempSystem}" th:text="${tempSystem}"></li>
+    </ul>
 </body>
 </html>

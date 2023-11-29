@@ -16,14 +16,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class StudentController {
 
     // Add list of countries from application.properties directly,
-
     @Value("${countries}")
     private List<String> countries;
 
     // Add list of languages from application.properties directly,
-
     @Value("${languages}")
     private List<String> languages;
+
+    // Add list of languages from application.properties directly,
+    @Value("${systems}")
+    private List<String> systems;
 
 
     @GetMapping("/showStudentForm")
@@ -41,6 +43,9 @@ public class StudentController {
 
         // add list of languages into the model
         theModel.addAttribute("languages", languages);
+
+        // add list of Fav system into the model
+        theModel.addAttribute("systems", systems);
         
         return "student-form";
     }
