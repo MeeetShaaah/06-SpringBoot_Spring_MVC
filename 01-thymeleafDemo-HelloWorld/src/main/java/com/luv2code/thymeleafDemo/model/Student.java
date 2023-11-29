@@ -2,19 +2,20 @@ package com.luv2code.thymeleafDemo.model;
 
 import java.util.List;
 
-import io.micrometer.common.lang.NonNull;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 public class Student {
     private String firstName;
-    // Add validation rules to the last name 
-    @NonNull(message = "is required")
-    @Size(min=1, message="is required")
-    private String lastName;
+
+    // Add validation rules to the last name
+    @NotNull(message = "is required")
+    @Size(min = 1, message = "is required")
+    private String lastName = "";
+
     private String country;
     private String favoriteLanguage;
     private List<String> favoriteSystems;
-
-    
 
     public List<String> getFavoriteSystems() {
         return favoriteSystems;

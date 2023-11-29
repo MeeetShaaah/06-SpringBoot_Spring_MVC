@@ -5,12 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.luv2code.thymeleafDemo.model.Student;
-import org.springframework.web.bind.annotation.PostMapping;
 
+import jakarta.validation.Valid;
+
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class StudentController {
@@ -27,18 +30,17 @@ public class StudentController {
     @Value("${systems}")
     private List<String> systems;
 
-
     @GetMapping("/showStudentForm")
-    public String showForm(Model theModel){
-        
-        //creating student object
-         
+    public String showForm(Model theModel) {
+
+        // creating student object
+
         Student theStudent = new Student();
 
-        //add that object to model
-        theModel.addAttribute("student", theStudent); 
+        // add that object to model
+        theModel.addAttribute("student", theStudent);
 
-        // add the list of countries into the model 
+        // add the list of countries into the model
         theModel.addAttribute("countries", countries);
 
         // add list of languages into the model
@@ -46,16 +48,20 @@ public class StudentController {
 
         // add list of Fav system into the model
         theModel.addAttribute("systems", systems);
-        
+
         return "student-form";
     }
 
     @PostMapping("/processStudentForm")
-    public String processForm(@ModelAttribute("student") Student theStudent){
+    public String processForm(@Valid @ModelAttribute("student") Student theStudent, BindingResult theBindingResult) {
 
-        System.out.println("Student:" + theStudent.getFirstName() + ' ' + theStudent.getLastName());
-
-        return "student-confirmation";
+        if (theBindingResult.hasErrors()) {
+            return "student-form";
+        } else {
+            return "student-confirmation";
+        }
+        // System.out.println("Student:" + theStudent.getFirstName() + ' ' +
+        // theStudent.getLastName());
     }
 
 }
