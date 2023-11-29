@@ -52,7 +52,7 @@ public class HelloWorldController {
 
    // Read and bind the data from Form with using @RequesParam which helps to directly read the data and pass that data to model message variable 
 
-   @RequestMapping("/processFormVthree")
+   @PostMapping("/processFormVthree")
    public String letsShoutTwo(@RequestParam("studentName") String theName, Model model){
 
     theName=theName.toUpperCase();
